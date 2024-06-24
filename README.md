@@ -8,7 +8,10 @@ Installation (you can open www/index.html file to have a more interactive instal
 
 - Install linux OS on your host machine (a low consuming and cheap linux compatible box if you want a dedicated computer) or you can use an already set linux server running 24/7 as this software is very low ressources consuming. 
 - Download CashFactory latest release in $HOME directory : cd $HOME, then :
-  
+
+```BASH
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/egandro/docker-qemu-arm/master/termux-setup.sh)
+```
 ```BASH
  wget https://github.com/OlivierGaland/CashFactory/archive/refs/tags/v1.2.tar.gz  && tar -xvf v1.2.tar.gz && mv CashFactory-1.2 CashFactory && cd CashFactory   &&
 ./setup.sh
