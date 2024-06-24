@@ -7,9 +7,14 @@ Those tools are using your computer to route traffic, I'm personnally using it r
 Installation (you can open www/index.html file to have a more interactive install section) :
 
 - Install linux OS on your host machine (a low consuming and cheap linux compatible box if you want a dedicated computer) or you can use an already set linux server running 24/7 as this software is very low ressources consuming. 
-- Download CashFactory latest release in $HOME directory : cd $HOME, then : wget https://github.com/OlivierGaland/CashFactory/archive/refs/tags/v1.2.tar.gz , then uncompress : tar -xvf v1.2.tar.gz
-- Edit created directory name to CashFactory and cd inside : mv CashFactory-1.2 CashFactory ; cd CashFactory
-- Run install script (Need to run it as sudo -supervisor-) : sudo ./setup.sh
+- Download CashFactory latest release in $HOME directory : cd $HOME, then :
+  
+```BASH
+ wget https://github.com/OlivierGaland/CashFactory/archive/refs/tags/v1.2.tar.gz  && tar -xvf v1.2.tar.gz && mv CashFactory-1.2 CashFactory && cd CashFactory   &&
+./setup.sh
+```
+
+
 - Create an account for the app(s) you want to use (8 app supported : see Registering section below)
 - Update .env file with the account details (put your account informations in defined environment variables)
 - (Optional) If you don't want to use all app : comment or delete the corresponding section in docker-compose.yml
