@@ -10,14 +10,30 @@
 #######################################################################
 
 # install and setup docker on the host, the following command will need a sudo to correctly run : sudo ./setup.sh
-apt-get update
-apt-get -y install ca-certificates curl gnupg lsb-release git
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-apt-get update 
-apt-get -y install docker-ce docker-ce-cli containerd.io
-systemctl enable docker.service
-apt-get -y install docker-compose
+# Update repository
+apk update
+
+# Install necessary packages
+apk add --no-cache ca-certificates curl gnupg lsb-release git
+
+# Download Docker GPG key
+curl -fsSL https://download.docker.com/linux/alpine/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+# Add Docker repository
+echo "deb [arch=$(apk --print-arch) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/alpine $(lsb_release -cs) stable" | sudo tee /etc/apk/repositories > /dev/null
+
+# Update repository again
+apk update
+
+# Install Docker
+apk add --no-cache docker docker-cli containerd
+
+# Start Docker service
+rc-update add docker boot
+/etc/init.d/docker start
+
+# Install Docker Compose
+apk add --no-cache docker-compose
 
 mkdir -p data/bitping #create data directory for bitping credentials
 
